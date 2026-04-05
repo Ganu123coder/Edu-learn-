@@ -23,6 +23,7 @@ import StudentCourses from "@/pages/student/courses";
 import StudentCoursePlayer from "@/pages/student/course-player";
 import StudentAIPlanner from "@/pages/student/ai-planner";
 import StudentMyRoadmap from "@/pages/student/my-roadmap";
+import StudentAttendance from "@/pages/student/attendance";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -110,6 +111,9 @@ function AppRoutes() {
 
         <Route path="/student/courses">
           {() => <ProtectedRoute component={StudentCourses} roles={["student"]} />}
+        </Route>
+        <Route path="/student/attendance">
+          {() => <ProtectedRoute component={StudentAttendance} roles={["student"]} />}
         </Route>
         <Route path="/ai-planner">
           {() => <ProtectedRoute component={StudentAIPlanner} roles={["student"]} />}

@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { BookOpen, LogOut, LayoutDashboard, Settings, User as UserIcon } from "lucide-react";
+import { BookOpen, LogOut, LayoutDashboard, User as UserIcon, CalendarCheck } from "lucide-react";
 
 export function Layout({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
@@ -81,15 +81,29 @@ export function Layout({ children }: { children: ReactNode }) {
                           <span>My Courses</span>
                         </Link>
                       </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/student/attendance" className="cursor-pointer w-full flex items-center">
+                          <CalendarCheck className="mr-2 h-4 w-4" />
+                          <span>My Attendance</span>
+                        </Link>
+                      </DropdownMenuItem>
                     </>
                   )}
                   {user.role === "trainer" && (
-                    <DropdownMenuItem asChild>
-                      <Link href="/trainer/courses" className="cursor-pointer w-full flex items-center">
-                        <BookOpen className="mr-2 h-4 w-4" />
-                        <span>Manage Courses</span>
-                      </Link>
-                    </DropdownMenuItem>
+                    <>
+                      <DropdownMenuItem asChild>
+                        <Link href="/trainer/courses" className="cursor-pointer w-full flex items-center">
+                          <BookOpen className="mr-2 h-4 w-4" />
+                          <span>Manage Courses</span>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/trainer/attendance" className="cursor-pointer w-full flex items-center">
+                          <CalendarCheck className="mr-2 h-4 w-4" />
+                          <span>Mark Attendance</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </>
                   )}
                   {user.role === "admin" && (
                     <DropdownMenuItem asChild>

@@ -302,6 +302,7 @@ export const RateCourseResponse = zod.object({
 export const ListEnrollmentsResponseItem = zod.object({
   id: zod.number(),
   studentId: zod.number(),
+  studentName: zod.string(),
   courseId: zod.number(),
   courseTitle: zod.string(),
   courseThumbnail: zod.string().nullish(),
@@ -335,6 +336,7 @@ export const UpdateProgressBody = zod.object({
 export const UpdateProgressResponse = zod.object({
   id: zod.number(),
   studentId: zod.number(),
+  studentName: zod.string(),
   courseId: zod.number(),
   courseTitle: zod.string(),
   courseThumbnail: zod.string().nullish(),
@@ -484,6 +486,7 @@ export const GetPlatformStatsResponse = zod.object({
     zod.object({
       id: zod.number(),
       studentId: zod.number(),
+      studentName: zod.string(),
       courseId: zod.number(),
       courseTitle: zod.string(),
       courseThumbnail: zod.string().nullish(),
@@ -554,6 +557,7 @@ export const GetTrainerStatsResponse = zod.object({
     zod.object({
       id: zod.number(),
       studentId: zod.number(),
+      studentName: zod.string(),
       courseId: zod.number(),
       courseTitle: zod.string(),
       courseThumbnail: zod.string().nullish(),
@@ -583,6 +587,7 @@ export const GetStudentStatsResponse = zod.object({
     zod.object({
       id: zod.number(),
       studentId: zod.number(),
+      studentName: zod.string(),
       courseId: zod.number(),
       courseTitle: zod.string(),
       courseThumbnail: zod.string().nullish(),

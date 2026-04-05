@@ -835,6 +835,8 @@ components:
           type: integer
         studentId:
           type: integer
+        studentName:
+          type: string
         courseId:
           type: integer
         courseTitle:
@@ -858,6 +860,7 @@ components:
       required:
         - id
         - studentId
+        - studentName
         - courseId
         - courseTitle
         - trainerName

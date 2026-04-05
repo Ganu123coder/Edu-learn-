@@ -9,12 +9,14 @@ const router: IRouter = Router();
 async function buildEnrollmentData(enrollment: typeof enrollmentsTable.$inferSelect) {
   const [course] = await db.select().from(coursesTable).where(eq(coursesTable.id, enrollment.courseId));
   const [trainer] = course ? await db.select().from(usersTable).where(eq(usersTable.id, course.trainerId)) : [null];
+  const [student] = await db.select().from(usersTable).where(eq(usersTable.id, enrollment.studentId));
 
   const completedLessons = JSON.parse(enrollment.completedLessons || "[]") as number[];
 
   return {
     id: enrollment.id,
     studentId: enrollment.studentId,
+    studentName: student?.name ?? "Unknown Student",
     courseId: enrollment.courseId,
     courseTitle: course?.title ?? "Unknown Course",
     courseThumbnail: course?.thumbnail ?? null,

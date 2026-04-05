@@ -151,6 +151,7 @@ export const EnrollmentCompletionStatus = {
 export interface Enrollment {
   id: number;
   studentId: number;
+  studentName: string;
   courseId: number;
   courseTitle: string;
   courseThumbnail?: string | null;
