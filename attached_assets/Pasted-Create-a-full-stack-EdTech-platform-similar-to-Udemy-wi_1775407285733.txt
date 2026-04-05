@@ -1,0 +1,389 @@
+Create a full-stack EdTech platform similar to Udemy with an integrated AI Learning Planner. The platform should support three main roles: Admin, Trainer, and Student. Trainers can create courses, students can enroll and track learning, and the AI system helps students plan their learning path.
+
+Tech Stack:
+Frontend: React.js with Tailwind CSS
+Backend: Node.js with Express
+Database: MongoDB (Mongoose)
+Authentication: JWT + bcrypt
+AI Integration: OpenAI API (or any LLM API)
+
+---
+
+1. Authentication System
+
+Implement secure authentication and role-based access.
+
+Features:
+
+* User registration and login
+* Role selection during signup (Student or Trainer)
+* Admin account manually created in database
+* Password hashing using bcrypt
+* JWT-based authentication
+* Protected routes for each role
+
+User Model Fields:
+
+* name
+* email
+* password
+* role (admin, trainer, student)
+* profilePhoto
+* createdAt
+
+---
+
+2. User Roles and Permissions
+
+Admin Capabilities:
+
+* View all users
+* Approve or block trainers
+* View platform statistics
+* Delete courses
+* Manage categories
+* Monitor enrollments
+* View analytics dashboard
+
+Trainer Capabilities:
+
+* Create courses
+* Edit and delete courses
+* Upload course videos and PDF materials
+* Create course modules and lessons
+* View enrolled students
+* Mark student attendance per session
+* View student progress
+
+Student Capabilities:
+
+* Browse courses
+* Search and filter courses
+* Enroll in courses
+* Watch course content
+* Track learning progress
+* View attendance records
+* Use AI learning planner
+* Manage personal learning roadmap
+
+---
+
+3. Course Management System
+
+Each course should contain:
+
+Course Model Fields:
+
+* title
+* description
+* category
+* trainerId
+* thumbnail
+* price
+* modules
+* lessons
+* enrolledStudents
+* ratings
+* createdAt
+
+Module Structure:
+Module
+
+* moduleTitle
+* lessons
+
+Lesson
+
+* lessonTitle
+* videoUrl
+* PDF resources
+* duration
+
+Course Features:
+
+* Course detail page
+* Video player for lessons
+* Progress tracking
+* Course rating and review system
+
+---
+
+4. Enrollment System
+
+Enrollment Model:
+
+* studentId
+* courseId
+* enrollmentDate
+* progressPercentage
+* completionStatus
+
+Features:
+
+* Student clicks "Enroll"
+* Enrollment saved in database
+* Course unlocked for the student
+* Progress tracked per lesson
+
+---
+
+5. Attendance System
+
+Trainers should be able to mark attendance for each class session.
+
+Attendance Model:
+
+* studentId
+* courseId
+* sessionDate
+* status (present or absent)
+
+Trainer Interface:
+
+* Select course
+* View enrolled students
+* Mark attendance
+
+Student Interface:
+
+* View attendance history
+* View attendance percentage
+
+---
+
+6. AI Learning Planner Feature
+
+Create an AI-powered system that generates personalized learning plans.
+
+AI Planner Input Form:
+Students should enter:
+
+* Career goal (Example: Data Scientist, Full Stack Developer)
+* Current skill level (Beginner, Intermediate, Advanced)
+* Available study hours per day
+* Learning duration (30, 60, 90 days)
+* Preferred technologies
+* Learning style (videos, projects, theory)
+
+When the form is submitted:
+Send the input to backend AI API.
+
+AI should generate:
+
+* Personalized learning roadmap
+* Weekly study schedule
+* Recommended platform courses
+* Project suggestions
+* Estimated completion timeline
+
+Example AI Output:
+
+Week 1–2
+Learn HTML and CSS fundamentals
+Recommended Course: Web Development Basics
+
+Week 3–4
+JavaScript Fundamentals
+Recommended Course: JavaScript Bootcamp
+
+Week 5–6
+React Basics
+Recommended Course: React for Beginners
+
+---
+
+7. AI Course Recommendation Engine
+
+AI should analyze:
+
+* Student interests
+* Completed courses
+* Skill level
+* Learning goals
+
+Then recommend courses automatically.
+
+Example:
+"Students who want to become Data Scientists should take these courses first."
+
+---
+
+8. Learning Plan Database Model
+
+LearningPlan Schema:
+
+* studentId
+* goal
+* skillLevel
+* hoursPerDay
+* duration
+* roadmap (AI generated plan)
+* recommendedCourses
+* createdAt
+
+Students should be able to:
+
+* Save learning plan
+* View roadmap timeline
+* Track milestones
+* Mark completed tasks
+
+---
+
+9. Dashboard System
+
+Admin Dashboard:
+
+* total users
+* total trainers
+* total students
+* total courses
+* platform analytics
+* enrollment statistics
+
+Trainer Dashboard:
+
+* my courses
+* enrolled students
+* attendance manager
+* course analytics
+
+Student Dashboard:
+
+* enrolled courses
+* learning progress
+* attendance summary
+* AI learning roadmap
+* recommended courses
+
+---
+
+10. UI Pages
+
+Public Pages:
+
+* Home page
+* Course listing page
+* Course detail page
+* Login and signup page
+
+Private Pages:
+
+* Admin dashboard
+* Trainer dashboard
+* Student dashboard
+* Course player page
+* AI planner page
+* My learning roadmap page
+
+---
+
+11. UI Components
+
+Use modern UI components:
+
+* Course cards
+* Search bar
+* Filter by category
+* Progress bars
+* Timeline roadmap
+* Dashboard analytics cards
+* Video player
+
+Design Requirements:
+
+* Fully responsive
+* Mobile friendly
+* Clean modern design
+* Dark mode support
+
+---
+
+12. Notifications System
+
+Add notifications for:
+
+* New course enrollment
+* Trainer announcements
+* AI planner updates
+* Course completion
+
+---
+
+13. Folder Structure
+
+Frontend:
+
+frontend/
+components/
+pages/
+context/
+services/
+hooks/
+
+Backend:
+
+backend/
+controllers/
+models/
+routes/
+middleware/
+services/
+
+---
+
+14. API Routes
+
+Auth Routes:
+POST /api/auth/register
+POST /api/auth/login
+
+Course Routes:
+POST /api/courses
+GET /api/courses
+GET /api/courses/:id
+DELETE /api/courses/:id
+
+Enrollment Routes:
+POST /api/enroll
+GET /api/enrollments
+
+Attendance Routes:
+POST /api/attendance
+GET /api/attendance/:courseId
+
+AI Planner Routes:
+POST /api/ai/generate-plan
+GET /api/ai/my-plan
+
+---
+
+15. Advanced Features
+
+Add the following premium features:
+
+* Course reviews and ratings
+* Certificate generation after course completion
+* AI chatbot learning assistant
+* Smart course recommendations
+* Course completion badges
+* Resume skill analysis
+* Study streak tracking
+
+---
+
+16. Final Output
+
+Generate complete production-ready code including:
+
+* Backend API with Express
+* MongoDB schemas
+* React frontend pages
+* Role-based dashboards
+* AI integration logic
+* Course management system
+* Attendance system
+* AI learning planner
+* Responsive UI
+
+The code should be clean, modular, scalable, and ready for deployment.
