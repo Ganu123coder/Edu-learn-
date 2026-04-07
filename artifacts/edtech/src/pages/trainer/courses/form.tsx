@@ -52,7 +52,25 @@ export default function CourseForm() {
   const courseId = id ? parseInt(id, 10) : 0;
   const { toast } = useToast();
 
-  const { data: categories } = useListCategories();
+  const { data: fetchedCategories } = useListCategories();
+
+  const FALLBACK_CATEGORIES = [
+    "Web Development",
+    "Data Science",
+    "Machine Learning",
+    "Mobile Development",
+    "Cloud Computing",
+    "Cybersecurity",
+    "UI/UX Design",
+    "DevOps",
+    "Blockchain",
+    "Game Development",
+  ];
+
+  const categoryOptions =
+    fetchedCategories && fetchedCategories.length > 0
+      ? fetchedCategories.map((c) => c.name)
+      : FALLBACK_CATEGORIES;
   const { data: course, isLoading: courseLoading } = useGetCourse(courseId, {
     query: { enabled: isEditing }
   });
@@ -191,8 +209,8 @@ export default function CourseForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {categories?.map((cat) => (
-                            <SelectItem key={cat.id} value={cat.name}>{cat.name}</SelectItem>
+                          {categoryOptions.map((name) => (
+                            <SelectItem key={name} value={name}>{name}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
