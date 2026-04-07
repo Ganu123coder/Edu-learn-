@@ -192,7 +192,7 @@ export default function CourseForm() {
                         </FormControl>
                         <SelectContent>
                           {categories?.map((cat) => (
-                            <SelectItem key={cat.id} value={cat.slug}>{cat.name}</SelectItem>
+                            <SelectItem key={cat.id} value={cat.name}>{cat.name}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
