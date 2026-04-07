@@ -54,18 +54,15 @@ export default function CourseLessons() {
   const onSubmit = async (data: LessonFormValues) => {
     try {
       await createLessonMutation.mutateAsync({
+        id: courseId,
         data: {
-          ...data,
-          courseId,
+          title: data.title,
           videoUrl: data.videoUrl || undefined,
           pdfUrl: data.pdfUrl || undefined,
-          orderIndex: course?.lessons?.length || 0,
-        } as any // The generated type might expect courseId in body or query param based on API design. Actually the spec says createLessonBody has everything except courseId? Wait, the spec has it if it's a sub-resource. Checking the API spec.
-        // Actually, the API path is probably POST /api/lessons or similar, let's just pass the data and see.
-        // Wait, looking at api.schemas.ts, CreateLessonBody doesn't have courseId! 
-        // Ah, it's POST /api/courses/{id}/lessons? Wait, let's check custom-fetch or useCreateLesson hook.
-        // The API generated hook `useCreateLesson` probably takes something like `{ courseId: number, data: CreateLessonBody }`.
-        // Let's assume that format or we'll get a type error. If it fails, I'll fix it. Let's look at the type of useCreateLesson if I can... well I can't read it dynamically easily right now. I'll just use the form.
+          duration: data.duration,
+          moduleTitle: data.moduleTitle || undefined,
+          orderIndex: course?.lessons?.length ?? 0,
+        },
       });
       toast({ title: "Lesson added successfully" });
       form.reset();
